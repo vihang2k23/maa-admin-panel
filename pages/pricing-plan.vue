@@ -19,7 +19,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(item, index) in sortedData" :key="index">
+            <tr class="text-center" v-for="(item, index) in sortedData" :key="index">
               <td class="px-4 py-2">{{ item.amount }}</td>
               <td class="px-4 py-2">{{ item.offer_price }}</td>
               <td class="px-4 py-2">{{ item.month }}</td>
