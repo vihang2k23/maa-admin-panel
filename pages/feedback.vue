@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen flex">
+  <div class="h-screen flex" v-if="!spinnerFlag">
     <!-- Sidebar Component -->
     <Sidebar class="md:w-1/4 bg-gray-100 text-white p-4" />
 
@@ -29,6 +29,9 @@
       </div>
     </main>
   </div>
+  <div v-else> 
+    <Spinner/>
+  </div>
 </template>
 
 <script setup>
@@ -37,17 +40,25 @@ const { $axios } = useNuxtApp();
 const data = ref([]);
 const sortKey = ref('');
 const sortOrder = ref('asc'); // 'asc' for ascending, 'desc' for descending
-
+const spinnerFlag = ref(false)
 onMounted(async () => {
   await getAllUsers();
 });
 
+
 const getAllUsers = async () => {
+  spinnerFlag.value = true;
   try {
     const response = await $axios.get('/feedback_messages'); // Make a GET request to the API
+    if(response.statusCode == 200) {
+      spinnerFlag.value = false;
+    }
     data.value = response.data;
   } catch (error) {
+    spinnerFlag.value = false;
     console.error(error);
+  }finally {
+    spinnerFlag.value = false; // Ensure spinnerFlag is false in all cases
   }
 };
 

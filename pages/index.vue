@@ -36,7 +36,8 @@ const handleLogin = () => {
     class="flex h-screen items-center justify-center bg-cover bg-center"
     style="background-image: url('https://source.unsplash.com/1920x1080/?city')"
   >
-    <div class="bg-white shadow-lg rounded-lg p-8 w-96 bg-opacity-95">
+  <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-md bg-opacity-95">
+
       <div class="flex justify-center mb-6">
         <img src="/logo.png" alt="Logo" class="h-20" />
       </div>

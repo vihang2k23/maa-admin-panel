@@ -27,11 +27,12 @@
           <li
             v-for="item in sidebarItems"
             :key="item.name"
+            @click="redirectPage(item)"
             class="p-4 cursor-pointer text-primary hover:bg-dark transition"
           >
-            <NuxtLink :to="item.route" class="block" @click="closeSidebar">
+            <button class="block" @click="closeSidebar(item)">
               {{ item.name }}
-            </NuxtLink>
+            </button>
           </li>
         </ul>
       </nav>
@@ -68,18 +69,25 @@ const toggleSidebar = () => {
   isSidebarVisible.value = !isSidebarVisible.value
 }
 
+
 // Function to close the sidebar when a link is clicked
-const closeSidebar = () => {
+const closeSidebar = (item) => {
+
+
   if (window.innerWidth < 768) {
     isSidebarVisible.value = false // Close only for smaller screens
   }
 }
 
+const redirectPage = (item) => {
+  console.log('item: ', item);
+  router.push(item.route)
+}
 // Logout function
 const router = useRouter()
 const handleLogout = () => {
   localStorage.removeItem('isAuthenticated') // Clear auth state
-  router.push('/login') // Redirect to login
+  router.push('/') // Redirect to login
 }
 
 // Ensure responsiveness on window resize

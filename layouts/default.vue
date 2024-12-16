@@ -51,7 +51,7 @@ const sidebarItems = [
 const router = useRouter()
 const handleLogout = () => {
   localStorage.removeItem('isAuthenticated') // Clear auth state
-  router.push('/login') // Redirect to login
+  router.push('/') // Redirect to login
 }
 </script>
 
