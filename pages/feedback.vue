@@ -60,7 +60,9 @@ const sortTable = (key) => {
     sortOrder.value = 'asc'; // Default to ascending if a new column is clicked
   }
 };
-
+definePageMeta({
+  middleware: ["auth"],
+});
 const sortedData = computed(() => {
   const sorted = [...data.value];
   if (sortKey.value) {

@@ -14,6 +14,9 @@
 <script setup>
 // Import the Sidebar component
 const { $axios } = useNuxtApp();
+definePageMeta({
+  middleware: ["auth"],
+});
 const data = ref(null);
 
 onMounted(async () => {

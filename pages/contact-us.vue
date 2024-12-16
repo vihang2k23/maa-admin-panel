@@ -39,7 +39,9 @@ const { $axios } = useNuxtApp();
 const data = ref([]);
 const sortKey = ref('');
 const sortOrder = ref('asc'); // 'asc' for ascending, 'desc' for descending
-
+definePageMeta({
+  middleware: ["auth"],
+});
 onMounted(async () => {
   await getAllUsers();
 });
