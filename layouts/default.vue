@@ -3,7 +3,7 @@
     <!-- Sidebar -->
     <aside class="w-64 bg-gray-800 text-white flex flex-col">
       <div class="p-6 text-lg font-bold">
-        <img src="/maaLogoText.png" alt="Logo" class="h-12 mb-4" />
+        <img src="/maaLogoText.png" alt="Logo" />
         Mixedmotion Advertify
       </div>
       <nav class="flex-1">
