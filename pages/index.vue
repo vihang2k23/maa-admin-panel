@@ -5,7 +5,7 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 
 // Static Credentials
-const EMAIL = 'partha@gmail.com'
+const EMAIL = 'parth@gmail.com'
 const PASSWORD = 'Admin@123'
 
 // State

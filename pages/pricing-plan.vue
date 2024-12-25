@@ -8,26 +8,39 @@
       <!-- Table Container -->
       <div class="overflow-x-auto w-full  items-center">
         <h1 class="text-center text-2xl mb-16">Pricing Plan Details</h1>
-        <table class="min-w-full bg-white  shadow-md rounded-lg overflow-hidden">
-          <thead>
-            <tr class="bg-gray-200">
-              <th class="px-4 py-2 cursor-pointer" @click="sortTable('amount')">Amount</th>
-              <th class="px-4 py-2 cursor-pointer" @click="sortTable('offer_price')">Offer Price</th>
-              <th class="px-4 py-2 cursor-pointer" @click="sortTable('month')">Month</th>
-              <th class="px-4 py-2 cursor-pointer" @click="sortTable('month_type')">Month Type</th>
-              <th class="px-4 py-2 cursor-pointer" @click="sortTable('sub_id')">Sub ID</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="text-center" v-for="(item, index) in sortedData" :key="index">
-              <td class="px-4 py-2">{{ item.amount }}</td>
-              <td class="px-4 py-2">{{ item.offer_price }}</td>
-              <td class="px-4 py-2">{{ item.month }}</td>
-              <td class="px-4 py-2">{{ item.month_type }}</td>
-              <td class="px-4 py-2">{{ item.sub_id }}</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="overflow-x-auto">
+          <!-- Table Wrapper -->
+          <div class="table-wrapper bg-white shadow-md rounded-lg">
+            <!-- Table Header -->
+            <table class="min-w-full">
+              <thead class="bg-gray-200">
+                <tr>
+                  <th class="px-4 py-2 cursor-pointer" @click="sortTable('amount')">Amount</th>
+                  <th class="px-4 py-2 cursor-pointer" @click="sortTable('offer_price')">Offer Price</th>
+                  <th class="px-4 py-2 cursor-pointer" @click="sortTable('month')">Month</th>
+                  <th class="px-4 py-2 cursor-pointer" @click="sortTable('month_type')">Month Type</th>
+                  <th class="px-4 py-2 cursor-pointer" @click="sortTable('sub_id')">Sub ID</th>
+                </tr>
+              </thead>
+            </table>
+        
+            <!-- Scrollable Body -->
+            <div class="table-body-wrapper h-64 overflow-y-auto">
+              <table class="min-w-full">
+                <tbody>
+                  <tr class="text-center" v-for="(item, index) in sortedData" :key="index">
+                    <td class="px-4 py-2">{{ item.amount }}</td>
+                    <td class="px-4 py-2">{{ item.offer_price }}</td>
+                    <td class="px-4 py-2">{{ item.month }}</td>
+                    <td class="px-4 py-2">{{ item.month_type }}</td>
+                    <td class="px-4 py-2">{{ item.sub_id }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        
       </div>
     </main>
   </div>
@@ -125,4 +138,21 @@ const sortedData = computed(() => {
     width: 100%;
   }
 }
+.table-body-wrapper {
+  max-height: 16rem; /* Adjust the height for the scrollable body */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+thead th {
+  position: sticky;
+  top: 0; /* Keep the header fixed at the top */
+  background-color: #e5e7eb; /* Match the header background color */
+  z-index: 10; /* Ensure header stays above the content */
+  white-space: nowrap; /* Prevent header text from wrapping */
+}
+
+tbody td {
+  white-space: nowrap; /* Prevent content from wrapping in table cells */
+}
+
 </style>

@@ -8,26 +8,65 @@
       <!-- Table Container -->
       <div class="overflow-x-auto w-full  items-center">
         <h1 class="text-center text-2xl mb-16">Contact-Us</h1>
-        <table class="min-w-full bg-white  shadow-md rounded-lg overflow-hidden">
-          <thead>
-            <tr class="bg-gray-200">
-              <th class="px-4 py-2 cursor-pointer" @click="sortTable('name')">Name</th>
-              <th class="px-4 py-2 cursor-pointer" @click="sortTable('email')">Email</th>
-              <th class="px-4 py-2 cursor-pointer" @click="sortTable('message')">Message</th>
-              <th class="px-4 py-2 cursor-pointer" @click="sortTable('status')">Status</th>
-              <th class="px-4 py-2 cursor-pointer" @click="sortTable('id')">ID</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="text-center" v-for="(item, index) in sortedData" :key="index">
-              <td class="px-4 py-2">{{ item.name }}</td>
-              <td class="px-4 py-2">{{ item.email }}</td>
-              <td class="px-4 py-2">{{ item.message }}</td>
-              <td class="px-4 py-2">{{ item.status }}</td>
-              <td class="px-4 py-2">{{ item.id }}</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="overflow-x-auto">
+          <!-- Table Header -->
+          <table class="min-w-full bg-white shadow-md rounded-lg">
+            <thead class="bg-gray-200">
+              <tr>
+                <th
+                  class="px-4 py-2 cursor-pointer"
+                  @click="sortTable('name')"
+                >
+                  Name
+                </th>
+                <th
+                  class="px-4 py-2 cursor-pointer"
+                  @click="sortTable('email')"
+                >
+                  Email
+                </th>
+                <th
+                  class="px-4 py-2 cursor-pointer"
+                  @click="sortTable('message')"
+                >
+                  Message
+                </th>
+                <th
+                  class="px-4 py-2 cursor-pointer"
+                  @click="sortTable('status')"
+                >
+                  Status
+                </th>
+                <th
+                  class="px-4 py-2 cursor-pointer"
+                  @click="sortTable('id')"
+                >
+                  ID
+                </th>
+              </tr>
+            </thead>
+          </table>
+        
+          <!-- Scrollable Table Body -->
+          <div class="table-body-wrapper max-h-64 overflow-y-auto">
+            <table class="min-w-full bg-white">
+              <tbody>
+                <tr
+                  class="text-center"
+                  v-for="(item, index) in sortedData"
+                  :key="index"
+                >
+                  <td class="px-4 py-2">{{ item.name }}</td>
+                  <td class="px-4 py-2">{{ item.email }}</td>
+                  <td class="px-4 py-2">{{ item.message }}</td>
+                  <td class="px-4 py-2">{{ item.status }}</td>
+                  <td class="px-4 py-2">{{ item.id }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
       </div>
     </main>
   </div>
@@ -125,4 +164,20 @@ const sortedData = computed(() => {
     width: 100%;
   }
 }
+.table-body-wrapper {
+  max-height: 16rem; /* Set the desired height for the scrollable body */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+thead th {
+  position: sticky;
+  top: 0; /* Keep the header at the top when scrolling */
+  background-color: #e5e7eb; /* Match header background color */
+  z-index: 10;
+}
+
+tbody td {
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
 </style>

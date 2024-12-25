@@ -8,24 +8,49 @@
       <!-- Table Container -->
       <div class="overflow-x-auto w-full  items-center">
         <h1 class="text-center text-2xl mb-16">FeedBack</h1>
-        <table class="min-w-full bg-white  shadow-md rounded-lg overflow-hidden">
-          <thead>
-            <tr class="bg-gray-200">
-       
-              <th class="px-4 py-2 cursor-pointer" @click="sortTable('message')">Message</th>
-              <th class="px-4 py-2 cursor-pointer" @click="sortTable('status')">Status</th>
-              <th class="px-4 py-2 cursor-pointer" @click="sortTable('id')">ID</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="text-center" v-for="(item, index) in sortedData" :key="index">
-   
-              <td class="px-4 py-2 text-center">{{ item.message }}</td>
-              <td class="px-4 py-2 text-center">{{ item.status }}</td>
-              <td class="px-4 py-2">{{ item.id }}</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="overflow-x-auto">
+          <table class="min-w-full bg-white shadow-md rounded-lg">
+            <thead class="bg-gray-200">
+              <tr>
+                <th
+                  class="px-4 py-2 cursor-pointer"
+                  @click="sortTable('message')"
+                >
+                  Message
+                </th>
+                <th
+                  class="px-4 py-2 cursor-pointer"
+                  @click="sortTable('status')"
+                >
+                  Status
+                </th>
+                <th
+                  class="px-4 py-2 cursor-pointer"
+                  @click="sortTable('id')"
+                >
+                  ID
+                </th>
+              </tr>
+            </thead>
+          </table>
+          <!-- Scrollable Table Body -->
+          <div class="table-body-wrapper h-64 overflow-y-auto">
+            <table class="min-w-full">
+              <tbody>
+                <tr
+                  class="text-center bg-white"
+                  v-for="(item, index) in sortedData"
+                  :key="index"
+                >
+                  <td class="px-4 py-2 text-center">{{ item.message }}</td>
+                  <td class="px-4 py-2 text-center">{{ item.status }}</td>
+                  <td class="px-4 py-2">{{ item.id }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
       </div>
     </main>
   </div>
@@ -121,5 +146,20 @@ const sortedData = computed(() => {
   table {
     width: 100%;
   }
+}
+.table-body-wrapper {
+  max-height: 16rem; /* Set the desired height for the scrollable body */
+  overflow-y: auto;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+ 
+  z-index: 10;
+}
+
+tbody td {
+  white-space: nowrap; /* Prevent text from wrapping */
 }
 </style>
